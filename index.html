@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        .form,
+        .form2 {
+            width: 250px;
+            background: #2DAC2D;
+        }
+
+        .form2 {
+            background: #4EA5CC;
+        }
+    
+        .label,
+        .label2 {
+            display: block;
+            padding: 20px;
+        }
+    </style>
+    <title>Homework-1</title>
+</head>
+<body>
+    <h1>Расчет объема цилиндра</h1>
+    <p><strong>Цилиндр</strong> - геометрическое тело, ограниченное цилиндрической поверхностью (называемой боковой поверхностью цилиндра) и не более чем двумя поверхностями (основаниями цилиндра). 
+        <br> 
+        Цилиндр - круговой если в основании его лежит круг.
+    </p>
+    <h4>Первый способ вычисления объема цилиндра</h4>
+    <p>объем цилиндра равен произведению числа пи (3.1415) на квадрат радиуса основания на высоту:</p>
+    <form class="form" name="form1" action="#" method="get">
+        <label class="label">
+            <input type="text" name="radius" value=0>
+            <span>Radius</span>
+        </label>
+        <label class="label">
+            <input type="text" name="height" value=0>
+            <span>Height</span>
+        </label>
+        <label class="label">
+            <input type="button" name="butCyl" value="Get volume of cylinder" onClick="getCylinderVolume('form1');">
+        </label>
+        <label class="label">
+            <input type="text" name="result" value=0>
+            <span>Result</span>
+        </label>
+    </form>
+    <h4>Второй способ вычисления объема цилиндра</h4>
+    <p>объем цилиндра равен произведению площади основания на высоту:</p>
+    <form class="form2" name="form2" action="#" method="get">
+            <label class="label2">
+                <input type="text" name="baseArea" value="">
+                <span>Base area</span>
+            </label>
+            <label class="label2">
+                <input type="text" name="height2" value="">
+                <span>Height</span>
+            </label>
+            <label class="label2">
+                <input type="button" name="butCyl" value="Get volume of cylinder" onClick="cylinder2();">
+            </label>
+            <label class="label2">
+                <input type="text" name="result2" value="">
+                <span>Result</span>
+            </label>
+        </form>
+
+    <script type="text/javascript">
+
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+    
+        function getCylinderVolume(formName) {
+            
+            // console.log(formName);
+
+            var form = document.forms[formName];
+            // console.dir(form);
+
+            var r = Number(form.elements.radius.value);
+            // console.dir(r);
+
+            if (!isNumeric(r)) {
+                alert("Please type the proper number for radius value");
+                form.elements.radius.value = "";
+                return false
+            }
+
+
+            var h = Number(form.elements.height.value);
+
+            if (!isNumeric(h)) {
+                alert("Please type the proper number for height value");
+                form.elements.height.value = "";
+                return false
+            }
+
+            form.elements.result.value = Math.PI*r*r*h;
+
+        }
+
+        function cylinder2() {
+            var s = Number(document.getElementsByName("baseArea")[0].value);
+            // console.dir(s);
+
+            if (!isNumeric(s)) {
+                alert("Please type the proper number for radius value");
+                document.getElementsByName("baseArea")[0].value = "";
+                return false
+            }
+
+            var h = Number(document.getElementsByName("height2")[0].value);
+
+            if (!isNumeric(h)) {
+                alert("Please type the proper number for height value");
+                document.getElementsByName("height2")[0].value = "";
+                return false
+            }
+
+            document.getElementsByName("result2")[0].value = s*h;
+
+        } 
+
+    </script>
+</body>
+</html>
